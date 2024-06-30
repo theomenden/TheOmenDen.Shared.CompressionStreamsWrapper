@@ -1,0 +1,49 @@
+﻿@inherits LayoutComponentBase
+<Layout>
+    <LayoutHeader Fixed>
+        <Bar Background="Background.Dark"
+             Mode="BarMode.Horizontal"
+             Breakpoint="Breakpoint.Desktop"
+             NavigationBreakpoint="Breakpoint.Tablet"
+             Shadow="Shadow.Default">
+            <BarToggler />
+            <BarBrand>
+                <BarLink To="">
+                    <BarIcon IconName="IconName.Dashboard" />
+                    <Span TextColor="TextColor.Light">Compression Streams Demo</Span>
+                </BarLink>
+            </BarBrand>
+            <BarMenu>
+                <BarStart>
+                    <BarItem>
+                        <BarLink To="">
+                            <BarIcon IconName="IconName.Home" />
+                            <Span TextColor="TextColor.Light">Home</Span>
+                        </BarLink>
+                    </BarItem>
+                </BarStart>
+            </BarMenu>
+        </Bar>
+    </LayoutHeader>
+    <LayoutContent Padding="Padding.Is4.OnX">
+        @Body
+    </LayoutContent>
+    <LayoutFooter>
+        <Bar Background="Background.Dark"
+             Mode="BarMode.Horizontal"
+             Breakpoint="Breakpoint.Desktop"
+             NavigationBreakpoint="Breakpoint.Tablet"
+             Shadow="Shadow.Default">
+            <BarMenu>
+                <BarEnd>
+                    <BarItem>
+                        <BarLink To="https://theomenden.app">
+                            <BarIcon IconName="IconName.Info" />
+                            <Span TextColor="TextColor.Light">The Omen Den<sup>&trade;</sup></Span>
+                        </BarLink>
+                    </BarItem>
+                </BarEnd>
+            </BarMenu>
+        </Bar>
+    </LayoutFooter>
+</Layout>

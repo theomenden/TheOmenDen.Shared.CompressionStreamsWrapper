@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheOmenDen.Shared.CompressionStreamsWrapper", "TheOmenDen.Shared.CompressionStreamsWrapper\TheOmenDen.Shared.CompressionStreamsWrapper.csproj", "{33B38DB1-C47B-4E4F-9A89-388A8B435AAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheOmenDen.Shared.CompressionStreamsWrapper", "TheOmenDen.Shared.CompressionStreamsWrapper\TheOmenDen.Shared.CompressionStreamsWrapper.csproj", "{33B38DB1-C47B-4E4F-9A89-388A8B435AAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheOmenDen.Shared.CompressionStreamsDemo", "TheOmenDen.Shared.CompressionStreamsDemo\TheOmenDen.Shared.CompressionStreamsDemo.csproj", "{0B51DF75-A30C-4731-BD42-EFF67ED634E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{33B38DB1-C47B-4E4F-9A89-388A8B435AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33B38DB1-C47B-4E4F-9A89-388A8B435AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33B38DB1-C47B-4E4F-9A89-388A8B435AAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B51DF75-A30C-4731-BD42-EFF67ED634E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B51DF75-A30C-4731-BD42-EFF67ED634E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B51DF75-A30C-4731-BD42-EFF67ED634E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B51DF75-A30C-4731-BD42-EFF67ED634E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

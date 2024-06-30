@@ -1,0 +1,159 @@
+﻿@page "/"
+@using TheOmenDen.Shared.CompressionStreamsDemo.Models
+@using TheOmenDen.Shared.CompressionStreamsWrapper.Services
+
+<PageTitle>Home</PageTitle>
+
+<Jumbotron Background="Background.Secondary"
+           TextAlignment="TextAlignment.Center"
+           Margin="Margin.IsAuto.OnX">
+    <JumbotronTitle Size="JumbotronTitleSize.Is2">Compression Streams Interop</JumbotronTitle>
+    <JumbotronSubtitle>Blazor WebAssembly and Blazor Server</JumbotronSubtitle>
+    <Paragraph>Compression Streams Interop is a Blazor WebAssembly and Blazor Server application that demonstrates the use of compression streams in .NET 8.0.</Paragraph>
+</Jumbotron>
+
+<Grid Columns="GridColumns.Are3.OnDesktop.Are1.OnMobile" Rows="GridRows.Are3.OnMobile.Are1.OnDesktop" Width="Width.Is100">
+    <Card Background="Background.Light"
+          Shadow="Shadow.Default">
+        <CardBody>
+            <CardTitle Size="3">Compression Streams</CardTitle>
+            <CardText>
+                A simple demo involving the use of the CompressionStreams API in Javascript, wrapped in a Blazor WebAssembly application.
+            </CardText>
+        </CardBody>
+    </Card>
+    <Card Background="Background.Light"
+          Shadow="Shadow.Default">
+        <CardBody>
+            <CardTitle Size="3">Samples to compress</CardTitle>
+            <CardText>
+                @if (!_users.Any())
+                {
+                    <Button Color="Color.Primary"
+                            Clicked="@(() => GenerateUsers(10, 5))">Generate Users</Button>
+                }
+                else
+                {
+                    <ListGroup Flush>
+                        <Repeater TItem="User" Items="_users">
+                            <Card>
+                                <CardBody>
+                                    @context.FullName - with: @context.Orders.Count orders
+                                </CardBody>
+                            </Card>
+                        </Repeater>
+                    </ListGroup>
+                }
+            </CardText>
+        </CardBody>
+    </Card>
+    <Card Background="Background.Light"
+          Shadow="Shadow.Default">
+        <CardBody>
+            <CardTitle Size="3">Compressed samples</CardTitle>
+            <CardText>
+                @if(!_compressedUsers.Any())
+                {
+                    <Button Color="Color.Primary"
+                            Clicked="@CompressUsers">Compress Users</Button>
+                }
+                else
+                {
+                    <ListGroup Flush>
+                        <Repeater TItem="byte[]" Items="_compressedUsers">
+                            <Card>
+                                <CardBody>
+                                    @context.Length bytes
+                                    <CardText>
+                                        @Convert.ToBase64String(context)
+                                    </CardText>
+                                </CardBody>
+                            </Card>
+                        </Repeater>
+                    </ListGroup>
+                }
+            </CardText>
+        </CardBody>
+    </Card>
+</Grid>
+
+@code {
+
+    [Inject] private ICompressionService CompressionService { get; init; }
+    private readonly List<User> _users = [];
+    private readonly List<byte[]> _compressedUsers = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        await CompressionService.InitializeAsync();
+
+    }
+
+    private Faker<Order> GenerateOrders()
+    {
+        
+        var fruit = new[] {"apple", "banana", "orange", "strawberry", "kiwi"};
+
+        var orderIds = 0;
+        return new Faker<Order>()
+            //Ensure all properties have rules. By default, StrictMode is false
+            //Set a global policy by using Faker.DefaultStrictMode if you prefer.
+            .StrictMode(true)
+            //OrderId is deterministic
+            .RuleFor(o => o.OrderId, f => orderIds++)
+            //Pick some fruit from a basket
+            .RuleFor(o => o.Item, f => f.PickRandom(fruit))
+            //A random quantity from 1 to 10
+            .RuleFor(o => o.Quantity, f => f.Random.Number(1, 10))
+            //A nullable int? with 80% probability of being null.
+            //The .OrNull extension is in the Bogus.Extensions namespace.
+            .RuleFor(o => o.LotNumber, f => f.Random.Int(0, 100).OrNull(f, .8f));
+    }
+
+    private void GenerateUsers(int userCount, int ordersCount)
+    {
+
+        var userIds = 0;
+        var testUsers = new Faker<User>()
+            //Optional: Call for objects that have complex initialization
+            .CustomInstantiator(f => new User(userIds++, f.Random.Replace("###-##-####")))
+
+            //Basic rules using built-in generators
+            .RuleFor(u => u.FirstName, f => f.Name.FirstName())
+            .RuleFor(u => u.LastName, f => f.Name.LastName())
+            .RuleFor(u => u.Avatar, f => f.Internet.Avatar())
+            .RuleFor(u => u.UserName, (f, u) => f.Internet.UserName(u.FirstName, u.LastName))
+            .RuleFor(u => u.Email, (f, u) => f.Internet.Email(u.FirstName, u.LastName))
+            .RuleFor(u => u.SomethingUnique, f => $"Value {f.UniqueIndex}")
+            .RuleFor(u => u.SomeGuid, Guid.NewGuid)
+
+            //Use an enum outside scope.
+            .RuleFor(u => u.Gender, f => f.PickRandom<Gender>())
+            //Use a method outside scope.
+            .RuleFor(u => u.CartId, f => Guid.NewGuid())
+            //Compound property with context, use the first/last name properties
+            .RuleFor(u => u.FullName, (f, u) => u.FirstName + " " + u.LastName)
+            //And composability of a complex collection.
+            .RuleFor(u => u.Orders, f => GenerateOrders().Generate(ordersCount))
+            //After all rules are applied finish with the following action
+            .FinishWith((f, u) =>
+            {
+                Console.WriteLine("User Created! Name={0}", u.FullName);
+            });
+
+        _users.AddRange(testUsers.Generate(userCount));
+    }
+
+    private async Task CompressUsers()
+    {
+        foreach(var user in _users)
+        {
+            var compressedUser = await CompressionService.CompressAsync(user);
+
+            _compressedUsers.Add(compressedUser);
+        }
+
+        await InvokeAsync(StateHasChanged);
+    }
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Omen Den Compression Streams Demo</title>
+    <base href="/" />
+    <link href="_content/Blazorise.Icons.FluentUI/FluentSystemIcons-Resizable.css" rel="stylesheet" />
+
+    <link href="_content/Blazorise/blazorise.css" rel="stylesheet" />
+    <link href="_content/Blazorise.FluentUI2/reboot.css" rel="stylesheet" />
+    <link href="_content/Blazorise.FluentUI2/blazorise.fluentui2.css" rel="stylesheet" />
+    <link href="_content/Blazorise.SpinKit/blazorise.spinkit.css" rel="stylesheet" />
+    <link href="_content/Blazorise.LoadingIndicator/blazorise.loadingindicator.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="TheOmenDen.Shared.CompressionStreamsDemo.styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="app">
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script src="dexie/dexie.min.js"></script>
+    <script src="_content/TheOmenDen.CompressionStreamsWrapper/compression.js"></script>
+    <script src="_content/Blazorise.Animate/blazorise.animate.js"></script>
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+
+</html>

@@ -1,11 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <TypeScriptTarget>ES6</TypeScriptTarget>
+		<TypeScriptTarget>ES6</TypeScriptTarget>
 	</PropertyGroup>
 
 	<PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	  <TypeScriptTarget>ES6</TypeScriptTarget>
+		<TypeScriptTarget>ES6</TypeScriptTarget>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -24,7 +24,27 @@
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<OutputType>Library</OutputType>
+		<IsPackable>true</IsPackable>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/theomenden/TheOmenDen.Shared.CompressionStreamsWrapper</RepositoryUrl>
 	</PropertyGroup>
+
+
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Remove="tsconfig.json" />
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="tsconfig.json" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
@@ -52,5 +72,9 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
-
+	<Target Name="BeforeBuildStep" BeforeTargets="Build">
+		<ItemGroup>
+			<JsFiles Include="wwwroot\*.js" />
+		</ItemGroup>
+	</Target>
 </Project>

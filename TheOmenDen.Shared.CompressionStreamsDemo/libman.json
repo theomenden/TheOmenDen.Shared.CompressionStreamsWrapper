@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "dexie@4.0.7",
+      "destination": "wwwroot/dexie/"
+    }
+  ]
+}

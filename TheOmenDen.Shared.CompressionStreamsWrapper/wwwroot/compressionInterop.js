@@ -1,4 +1,4 @@
-﻿import { compress, decompress } from './theomenden/js/compression.js';
+﻿import { compress, decompress } from './compression.js/index.js';
 
 window.compressionInterop = {
     compress,
