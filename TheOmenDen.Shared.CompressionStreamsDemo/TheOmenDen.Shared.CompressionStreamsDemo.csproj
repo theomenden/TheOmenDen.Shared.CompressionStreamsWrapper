@@ -17,7 +17,7 @@
     <PackageReference Include="Blazorise.LoadingIndicator" Version="1.5.3" />
     <PackageReference Include="Blazorise.SpinKit" Version="1.5.3" />
     <PackageReference Include="Bogus" Version="35.6.0" />
-    <PackageReference Include="Bogus.Hollywood" Version="35.5.1" />
+    <PackageReference Include="Bogus.Hollywood" Version="35.6.0" />
     <PackageReference Include="Bogus.Text" Version="35.5.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.7" PrivateAssets="all" />
