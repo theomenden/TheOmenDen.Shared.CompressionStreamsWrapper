@@ -13,7 +13,7 @@
     <PackageReference Include="Blazorise.Animate" Version="1.7.4" />
     <PackageReference Include="Blazorise.Components" Version="1.7.4" />
     <PackageReference Include="Blazorise.FluentUI2" Version="1.7.4" />
-    <PackageReference Include="Blazorise.Icons.FluentUI" Version="1.7.3" />
+    <PackageReference Include="Blazorise.Icons.FluentUI" Version="1.7.4" />
     <PackageReference Include="Blazorise.LoadingIndicator" Version="1.7.3" />
     <PackageReference Include="Blazorise.SpinKit" Version="1.7.3" />
     <PackageReference Include="Bogus" Version="35.6.1" />
