@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BlazorDexie" Version="1.5.2" />
+    <PackageReference Include="BlazorDexie" Version="1.6.0" />
     <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
     <PackageReference Include="Blazorise" Version="1.7.4" />
     <PackageReference Include="Blazorise.Animate" Version="1.7.4" />
