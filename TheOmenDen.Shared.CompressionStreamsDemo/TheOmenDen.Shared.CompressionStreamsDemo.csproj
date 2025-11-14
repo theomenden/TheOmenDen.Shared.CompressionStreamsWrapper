@@ -14,7 +14,7 @@
     <PackageReference Include="Blazorise.Components" Version="1.8.6" />
     <PackageReference Include="Blazorise.FluentUI2" Version="1.8.6" />
     <PackageReference Include="Blazorise.Icons.FluentUI" Version="1.8.6" />
-    <PackageReference Include="Blazorise.LoadingIndicator" Version="1.8.5" />
+    <PackageReference Include="Blazorise.LoadingIndicator" Version="1.8.6" />
     <PackageReference Include="Blazorise.SpinKit" Version="1.8.5" />
     <PackageReference Include="Bogus" Version="35.6.5" />
     <PackageReference Include="Bogus.Hollywood" Version="35.6.5" />
